@@ -1,0 +1,29 @@
+{
+    "display": {
+        "icon": {
+            "id": "minecraft:player_head",
+            "components": {
+          	"minecraft:profile": {
+            	"id": [-1695811886,-244104360,-1872076634,2082508791],
+            	"properties": [
+              	{
+                "name": "textures",
+                "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdlMjZhNDcyMWYwNjllMzUwYTQwZDExMDM3OTk3ZDliYjRiZWUzNGU1MTM3ODQ0ZDA2NDU5ODg5MzUyYzZiYiJ9fX0="
+              }
+            ]
+          }
+        }
+      },
+        "title": "Craemon's Datapacks",
+        "description": "https://modrinth.com/user/Craemon",
+        "background": "minecraft:textures/block/cyan_concrete.png",
+        "frame": "challenge",
+        "show_toast": false,
+        "announce_to_chat": false
+    },
+    "criteria": {
+        "tick": {
+            "trigger": "minecraft:tick"
+        }
+    }
+}
