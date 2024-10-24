@@ -1,12 +1,8 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "minecraft:fern"
-        },
-        {
-            "item": "minecraft:fern"
-        }
+        "minecraft:fern",
+        "minecraft:fern"
     ],
     "result": {
         "id": "minecraft:large_fern",
