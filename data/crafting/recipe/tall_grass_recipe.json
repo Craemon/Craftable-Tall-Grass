@@ -2,10 +2,8 @@
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
         {
-            "item": "minecraft:short_grass"
-        },
-        {
-            "item": "minecraft:short_grass"
+            "minecraft:short_grass",
+            "minecraft:short_grass"
         }
     ],
     "result": {
