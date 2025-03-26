@@ -16,7 +16,7 @@
       },
         "title": "Craemon's Datapacks",
         "description": "https://modrinth.com/user/Craemon",
-        "background": "minecraft:textures/block/cyan_concrete.png",
+        "background": "minecraft:block/cyan_concrete",
         "frame": "challenge",
         "show_toast": false,
         "announce_to_chat": false
