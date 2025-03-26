@@ -1,0 +1,49 @@
+name: Create Datapack Release
+
+on:
+  push:
+    branches:
+      - main  # Runs when pushing to the "main" branch
+  workflow_dispatch:  # Allows manual execution from GitHub
+
+jobs:
+  release:
+    name: Zip and Release Datapack
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract Version from pack.mcmeta
+        id: get_version
+        run: |
+          VERSION=$(jq -r '.pack.pack_format' pack.mcmeta)
+          REPO_NAME=$(basename $GITHUB_REPOSITORY)
+          TAG_NAME="v${VERSION}"
+          ZIP_NAME="${REPO_NAME}-${TAG_NAME}.zip"
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
+
+      - name: Configure Git & Push Tag
+        env:
+          FINE_GRAINED_PAT: ${{ secrets.FINE_GRAINED_PAT }}  # Using the Fine-Grained PAT token
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${FINE_GRAINED_PAT}@github.com/${{ github.repository }}.git
+          git tag ${{ env.TAG_NAME }}
+          git push origin ${{ env.TAG_NAME }}
+
+      - name: Create ZIP archive
+        run: |
+          zip -r "$ZIP_NAME" . -x "*.git*" ".github/*"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG_NAME }}
+          files: ${{ env.ZIP_NAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}  # Using GITHUB_TOKEN for release creation
+          draft: false
+          prerelease: false
